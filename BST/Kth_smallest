@@ -1,0 +1,25 @@
+
+public class Solution {
+    public static int nodes(BinaryTreeNode<Integer> root){
+      if(root==null)
+        return 0;
+    int nodesleft =  nodes(root.left);
+    int nodesright =  nodes(root.right);
+      return nodesleft+nodesright+1;
+      
+    }
+	public static int kthSmallestNode(BinaryTreeNode<Integer> root,int K){
+    if(root==null){
+      return Integer.MIN_VALUE;
+	}
+  int count=nodes(root.left);
+     // System.out.println(count+" "+root.data);
+  if((count+1)==K){
+    return root.data;
+  }else if(count+1>K){
+   return kthSmallestNode(root.left,K);
+  }else{
+  return   kthSmallestNode(root.right,K-count-1);
+  }
+    }
+}
