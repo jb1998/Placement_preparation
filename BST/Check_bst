@@ -1,0 +1,41 @@
+class Pair{
+  int min;
+  int max;
+  boolean isbst;
+}
+public class Solution {
+    public static Pair helper(BinaryTreeNode<Integer> root){
+      if(root==null)
+      {
+        Pair p=new Pair();
+        p.max=Integer.MIN_VALUE;
+        p.min=Integer.MAX_VALUE;
+        p.isbst=true;
+        return p;
+      }
+      Pair left=helper(root.left);
+      Pair right=helper(root.right);
+      Pair parent=new Pair();
+      parent.max=Math.max(Math.max(left.max,right.max),root.data);
+      parent.min=Math.min(Math.min(left.min,right.min),root.data);
+      boolean myans=true;
+      if(!left.isbst || !right.isbst)
+        myans=false;
+      if(root.left!=null && root.left.data>=root.data)
+        myans=false;
+      if(root.right!=null && root.right.data<root.data)
+        myans=false;
+  
+      if(left.max>=root.data || right.min<root.data)
+        myans=false;
+      parent.isbst= (myans && left.isbst && right.isbst);
+      return parent;
+      
+    }
+	public static boolean isBST(BinaryTreeNode<Integer> root) {
+      if(root==null)
+        return true;
+	return helper(root).isbst;
+        
+	}
+}
