@@ -1,0 +1,37 @@
+public class Solution {
+    public static int smallest_(BinaryTreeNode<Integer> root){
+      int smallest=Integer.MAX_VALUE;
+      while(root!=null){
+        if(root.data<smallest)
+          smallest=root.data;
+        root=root.left;
+      }
+      return smallest;
+    }
+	public static BinaryTreeNode<Integer> removeNode(int data, BinaryTreeNode<Integer> root) {
+	if(root==null)
+      return null;
+      if(root.data<data){
+        root.right=removeNode(data,root.right);
+      }
+      else if(root.data>data){
+        root.left=removeNode(data,root.left);
+      }else{
+       
+        if(root.left==null)
+          return root.right;
+        else if(root.right==null)
+          return root.left;
+        else{
+          int replace=smallest_(root.right);
+          root.data=replace;
+         
+          root.right =removeNode(replace,root.right);
+     
+        }
+   
+      }
+        return root;   
+        }   
+	
+}
