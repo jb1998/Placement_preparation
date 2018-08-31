@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class solution {
+public static int helper(BinaryTreeNode<Integer> root, int k,int arr[]){
+  if(root==null || arr[0]>k)
+    return 0;
+  int left=helper(root.left,k,arr);
+  if(arr[0]==k)
+    return left;
+  left+=root.data;
+  arr[0]++;
+  if(arr[0]==k)
+    return left;
+  int right=helper(root.right,k,arr);
+  return left+right;
+}	
+  public static int ksmallestElementSum(BinaryTreeNode<Integer> root, int k) {
+	int arr[]=new int[1];
+    return helper(root,k,arr);
+	}
+
+}
