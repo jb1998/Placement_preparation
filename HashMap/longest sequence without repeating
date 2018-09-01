@@ -1,0 +1,30 @@
+import java.util.*;
+
+/*
+	- You are given a string that may or may not contain repeating characters.
+	- Your task is to find out the length of the longest substring of this given string that does not contain any repeating characters.
+
+*/
+
+public class solution 
+{
+	public static int longestSubstringLength(String str) 
+	{int ans=0, window_start=0;
+     HashSet<Integer> has =new HashSet<>();
+     for(int i=0;i<str.length();) {
+//    	 System.out.println(has.size()+" swqs "+Integer.valueOf(str.charAt(i)));
+    	 if(!has.contains(Integer.valueOf(str.charAt(i)))) {
+    		 has.add(Integer.valueOf(str.charAt(i)));
+    		 ans=Math.max(ans, has.size());
+    		 i++;
+//    		 System.out.println(i);
+    	 }else {
+    		 ans=Math.max(ans,has.size());
+    		 has.remove(Integer.valueOf(str.charAt(window_start)));
+    		 window_start++;
+    	 }
+    	
+     }
+     return ans;
+      	}
+}
