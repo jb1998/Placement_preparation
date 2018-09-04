@@ -1,0 +1,50 @@
+
+import java.util.*;
+
+public class solution {
+  
+     static BinaryTreeNode<Integer> prev=null,first=null,second=null,store=null;
+  public static void helper1(BinaryTreeNode<Integer> root){
+    if(root==null)
+      return;
+    
+ //   System.out.println(root.data+" gjh");
+    helper1(root.left);
+    if(prev!=null && prev.data>root.data){
+      if(first!=null){
+        second=root;
+      }else{
+        first=prev;
+        store=root;
+      }
+ //     System.out.println(prev.data+" hello");
+    }
+    prev=root;
+     helper1(root.right);
+
+  }
+  static void print(BinaryTreeNode<Integer> root){
+    if(root==null)
+      return;
+    print(root.left);
+    System.out.print(root.data+" ");
+    print(root.right);
+  }
+	static void correctBST( BinaryTreeNode<Integer> root )
+    {	
+      helper1(root);
+    //    System.out.println(prev+" "+first+" "+second+" "+store);
+      if(first!=null && second!=null ){
+        int temp=first.data;
+  //      System.out.println(temp+" fv");
+        first.data=second.data;
+        second.data=temp;
+      }else if(first!=null && store!=null){
+            int temp=first.data;
+        first.data=store.data;
+        store.data=temp;
+      }
+      print(root);
+	}
+
+}
