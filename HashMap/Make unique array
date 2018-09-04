@@ -1,0 +1,16 @@
+import java.util.*;
+public class solution {
+	public static int CountExtraElements(int arr[], int n) {
+	HashSet<Integer> has=new HashSet<>();
+	int ans=0;
+	for(int i=0;i<n;i++) {
+		if(has.contains(arr[i])) {
+			ans++;
+		}else {
+			has.add(arr[i]);
+		}
+	}
+		return ans;
+	
+	}
+}
