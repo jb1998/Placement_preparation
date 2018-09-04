@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class solution {
+public static void inorder(BinaryTreeNode<Integer> root,ArrayList<Integer> arr){
+  if(root==null)
+    return;
+  inorder(root.left,arr);
+  arr.add(root.data);
+  inorder(root.right,arr);
+  
+}	
+  
+  static Boolean checkBSTs(BinaryTreeNode<Integer> root1, BinaryTreeNode<Integer> root2)
+	{
+      ArrayList<Integer> arr1=new ArrayList<>();
+   	  ArrayList<Integer> arr2=new ArrayList<>();
+    inorder(root1,arr1);
+    inorder(root2,arr2);
+    for(int i=0;i<arr1.size();i++){
+      if(arr1.get(i)!=arr2.get(i))
+        return false;
+    }
+    return true;
+    }
+
+}
