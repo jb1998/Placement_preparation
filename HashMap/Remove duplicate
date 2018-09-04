@@ -1,0 +1,33 @@
+public class solution 
+{
+	public static int[] removeDuplicates(int arr[])
+	{
+		//	write your code here.
+       int flag=0;
+            HashSet<Integer> has=new HashSet<>();
+            for(int i=0;i<arr.length;i++)
+            {
+                if(!has.contains(arr[i]))
+                {
+                    has.add(arr[i]);
+                }
+            }
+            int t[]=new int[has.size()];
+            for(int i =0;i<arr.length;i++)
+            {
+              if(has.contains(arr[i])){
+                t[flag]=arr[i];
+//                System.out.print(t[flag]+" ");
+                flag++;
+                has.remove(arr[i]);
+              }
+              
+            }
+            
+		//	write your code here.
+
+//		return null;
+return t;
+// 		return null;
+	}
+}
