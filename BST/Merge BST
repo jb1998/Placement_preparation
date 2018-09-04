@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class solution {
+  public static void inorder(ArrayList<Integer> path, BinaryTreeNode<Integer> root1){
+    if(root1==null)
+      return;
+    inorder(path,root1.left);
+    path.add(root1.data);
+    inorder(path,root1.right);
+    
+  }
+  public static BinaryTreeNode<Integer> helper2(ArrayList<Integer> list,int start,int end){
+    if(start>end){
+      return null;
+    }
+    int mid=start+(end-start)/2;
+    BinaryTreeNode<Integer> left_=helper2(list,start,mid-1);
+   
+  //  System.out.println(mid +" mid");
+    BinaryTreeNode<Integer> temp=new BinaryTreeNode<Integer>(list.get(mid));
+     BinaryTreeNode<Integer> right_=helper2(list,mid+1,end);
+    temp.left=left_;
+    temp.right=right_;
+    return temp;
+    
+  }
+  public static void print(BinaryTreeNode<Integer> root){
+    if(root==null)
+      return;
+    print(root.left);
+    System.out.print(root.data+" ");
+    print(root.right);
+  }
+	static void printMergeTrees(BinaryTreeNode<Integer> root1,
+			BinaryTreeNode<Integer> root2) {
+		ArrayList<Integer> list1=new ArrayList<>();
+      	ArrayList<Integer> list2=new ArrayList<>();
+      inorder(list1,root1);
+      inorder(list2,root2);
+      ArrayList<Integer> final_list=new ArrayList<>();
+      for(int i=0;i<list1.size();i++){
+        final_list.add(list1.get(i));
+  //      System.out.println(list1.get(i)+" 1");
+        
+        }
+      for(int i=0;i<list2.size();i++){
+        final_list.add(list2.get(i));
+        
+     //   System.out.println(list2.get(i)+" 2");
+        }
+      Collections.sort(final_list);
+     BinaryTreeNode<Integer> root=  helper2(final_list,0,final_list.size()-1);
+      print(root);
+	}
+
+}
