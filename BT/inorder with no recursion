@@ -1,0 +1,27 @@
+import java.util.*;
+public class Solution {
+  
+    public ArrayList<Integer> inorderTraversal(TreeNode A) {
+        if(A==null){
+        ArrayList<Integer> arr=new ArrayList<>();
+        return arr;
+        }
+        
+        ArrayList<Integer> arr=new ArrayList<>();
+        Stack<TreeNode> st=new Stack();
+        TreeNode temp=A;
+        while(temp!=null || !st.empty()){
+            while(temp!=null){
+                st.push(temp);
+                temp=temp.left;
+            }
+            temp=st.peek();
+            if(temp!=null)
+            arr.add(temp.val);
+            temp=temp.right;
+            st.pop();
+            
+        }
+        return arr;
+    }
+}
