@@ -1,0 +1,12 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int maxSubArray(final List<Integer> A) {
+        int max=A.get(0);
+        int max_till_now=A.get(0);
+        for(int i=1;i<A.size();i++){
+            max_till_now=Math.max(A.get(i),(max_till_now+A.get(i)));
+            max=Math.max(max,max_till_now);
+        }
+        return max;
+    }
+}
