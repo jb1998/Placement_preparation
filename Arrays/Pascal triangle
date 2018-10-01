@@ -1,0 +1,26 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(int A) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> temp=new ArrayList<>();
+        temp.add(1);
+        ans.add(temp);
+        for(int i=2;i<=A;i++){
+            ArrayList<Integer> my=new ArrayList<>();
+            my.add(1);
+            ArrayList<Integer> prev=new ArrayList<>();
+            prev=ans.get(i-2);
+           
+            for(int j=0;j<prev.size();j++){
+            int sum=0;
+                if((j+1)<prev.size()){
+                    sum=prev.get(j)+prev.get(j+1);
+                my.add(sum);
+                
+                }
+            }
+            my.add(1);
+            ans.add(my);
+        }
+        return ans;
+    }
+}
