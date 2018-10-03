@@ -1,3 +1,5 @@
+// function implementation
+
 public class Solution {
     public ArrayList<Integer> getRow(int A) {
         ArrayList<Integer> prev=new ArrayList<>();
