@@ -1,0 +1,25 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findPerm(final String A, int B) {
+        ArrayList<Integer> ans=new ArrayList<>();
+        int no_of_d=0;
+        for(int i=0;i<A.length();i++){
+            if(A.charAt(i)=='D')
+            no_of_d++;
+        }
+       int no_of_i=no_of_d+1;
+        ans.add(1);
+        for(int i=0;i<A.length();i++){
+            
+            if(A.charAt(i)=='I'){
+                ans.add(no_of_i);
+                no_of_i++;
+            }else{
+                ans.add(no_of_d);
+                no_of_d--;
+            }
+        }
+        return ans;
+        
+    }
+}
