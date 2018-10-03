@@ -1,0 +1,19 @@
+public class Solution {
+    public int isPalindrome(int A) {
+        if(A<0)
+        return 0;
+        String ch=A+"";
+        int s=0;
+        int e=ch.length()-1;
+        while(s<=e){
+            if(ch.charAt(s)!=ch.charAt(e)){
+                return 0;
+            }else{
+                s++;
+                e--;
+            }
+        }
+        return 1;
+        
+    }
+}
