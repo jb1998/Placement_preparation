@@ -1,0 +1,29 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int longestSubsequenceLength(final List<Integer> A) {
+        int lr[]=new int[A.size()];
+        int rl[]=new int[A.size()];
+        for(int i=0;i<lr.length;i++){
+            lr[i]=1;
+            rl[i]=1;
+        }
+        for(int i=1;i<lr.length;i++){
+            for(int j=0;j<i;j++){
+                if(A.get(j)<A.get(i) && lr[i]<lr[j]+1)
+                lr[i]=lr[j]+1;
+            }
+        }
+        for(int i=rl.length-2;i>=0;i--){
+            for(int j=rl.length-1;j>i;j--){
+                if(A.get(j)<A.get(i) && rl[i]<rl[j]+1)
+                rl[i]=rl[j]+1;
+            }
+        }
+        int ans=0;
+        for(int i=0;i<lr.length;i++){
+            if((lr[i]+rl[i]-1)>ans)
+            ans=(lr[i]+rl[i]-1);
+        }
+        return ans;
+    }
+}
