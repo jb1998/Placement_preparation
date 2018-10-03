@@ -1,0 +1,22 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST
+    public int repeatedNumber(final List<Integer> a) {
+        HashMap<Integer,Integer> has=new HashMap<>();
+        for(int i=0;i<a.size();i++){
+            if(!has.containsKey(a.get(i))){
+                has.put(a.get(i),1);
+            }else{
+                int val=has.get(a.get(i));
+                has.put(a.get(i),val+1);
+            }
+        }
+        int as=0;
+        for(int i=0;i<a.size();i++){
+            if(has.containsKey(a.get(i)) && has.get(a.get(i))>1){
+                as++;
+                has.remove(a.get(i));
+            }
+        }
+        return as;
+    }
+}
