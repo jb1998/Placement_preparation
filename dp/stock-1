@@ -1,0 +1,15 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int maxProfit(final List<Integer> A) {
+        if(A.size()==0)
+        return 0;
+        int ans=0,min=A.get(0);
+        for(int i=1;i<A.size();i++){
+            if(min>A.get(i)){
+                min=A.get(i);
+            }
+            ans=Math.min(ans,A.get(i)-min);
+        }
+        return ans;
+    }
+}
