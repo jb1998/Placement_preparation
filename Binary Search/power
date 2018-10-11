@@ -1,0 +1,22 @@
+public class Solution {
+    public int pow(int x, int n, int d) {
+        if(x==0)
+        return 0;
+        if(n==0)
+        return 1%d;
+        int po=pow(x,n/2,d);
+        if(n%2==0){
+            long ans=((po)%d*(po)%d)%d;
+            if(ans<0)
+            ans=(ans+d);
+            return (int)ans;
+        }else{
+            
+            long ans=((po)%d*(po)%d)%d;
+            ans=((ans%d)*(x%d))%d;
+            if(ans<0)
+            ans=(ans+d);
+            return (int)ans;
+        }
+    }
+}
