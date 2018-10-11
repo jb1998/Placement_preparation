@@ -1,0 +1,32 @@
+public class Solution {
+    public int searchInsert(ArrayList<Integer> a, int b) {
+        int start=0;
+        int end=a.size()-1;
+        int ans=0;
+         int mid=0;
+        while(end>=start){
+            mid=(start+end)/2;
+            if(b==a.get(mid)){
+                return mid;
+            }else if(b<a.get(mid)){
+                end=mid-1;
+                ans=mid-1;
+            }else{
+                start=mid+1;
+                ans=mid+1;
+            }
+        }
+        mid=(start+end)/2;
+            if(b==a.get(mid)){
+                return mid;
+            }else if(b<a.get(mid)){
+                
+                return mid;
+            }else{
+                // start=mid+1;
+                return mid+1;
+            }
+        
+      
+    }
+}
