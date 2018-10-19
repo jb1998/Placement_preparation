@@ -1,0 +1,25 @@
+public class Solution {
+    public int numDistinct(String A, String B) {
+        int n=A.length();
+        int m=B.length();
+        if(m>n)
+        return 0;
+        int dp[][]=new int[m+1][n+1];
+        for(int i=0;i<=n;i++){
+            dp[0][i]=1;
+        }
+        for(int i = 1; i <= m; i++){
+        for(int j = i; j <= n; j++){
+            if(A.charAt(j-1) == B.charAt(i-1)){
+                dp[i][j] = dp[i-1][j-1] + dp[i][j-1];
+            }
+            else{
+                dp[i][j] = dp[i][j-1];
+            }
+        }
+    }
+    
+    return dp[m][n];
+        
+    }
+}
