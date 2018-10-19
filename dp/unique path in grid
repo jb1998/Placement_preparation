@@ -1,0 +1,35 @@
+public class Solution {
+    public int helper(ArrayList<ArrayList<Integer>> A,int x,int y,int dp[][]) {
+        if(x>=A.size() || y>=A.get(0).size()){
+            
+        return 0;
+        }
+        
+        if(x==A.size()-1 && y==A.get(0).size()-1)
+        return 1;
+        
+        if(A.get(x).get(y)==1){
+            
+        return 0;
+        }
+        if(dp[x][y]!=-1)
+        return dp[x][y];
+        else{
+            dp[x][y]=helper(A,x+1,y,dp)+helper(A,x,y+1,dp);
+        }
+        return dp[x][y];
+        
+    }
+    public int uniquePathsWithObstacles(ArrayList<ArrayList<Integer>> A) {
+        int dp[][]=new int[A.size()][A.get(0).size()];
+        for(int i=0;i<A.size();i++){
+       for(int j=0;j<A.get(0).size();j++){
+           dp[i][j]=-1;
+       }
+        }
+         helper(A,0,0,dp);
+        if(dp[A.size()-1][A.get(0).size()-1]==-1)
+        return 0;
+        else return dp[A.size()-1][A.get(0).size()-1];
+    }
+}
