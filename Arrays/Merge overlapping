@@ -1,0 +1,69 @@
+package testing;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Stack;
+class Interval {
+    int start;
+    int end;
+    Interval() { start = 0; end = 0; }
+    Interval(int s, int e) { start = s; end = e; }
+}
+class Mycomparator implements Comparator{
+	@Override
+	public int compare(Object arg0, Object arg1) {
+		Interval a=(Interval)arg0;
+		Interval b=(Interval)arg1;
+		return a.start-b.start;
+	}
+}
+public class MergeOverLap {
+	
+	 public static ArrayList<Interval> merge(ArrayList<Interval> intervals) {
+		 Collections.sort(intervals,new Mycomparator());
+		  Stack<Interval> st=new Stack<>();
+		  st.push(intervals.get(0));
+//		  System.out.println(intervals.get(0).start+" wdd");
+		  for(int i=1;i<intervals.size();i++) {
+			Interval a=st.peek();
+
+//			  System.out.println(intervals.get(i).start+" wd");
+			if(a.end>=intervals.get(i).start) {
+				if(intervals.get(i).end>a.end)
+                   {
+                	   a.end=intervals.get(i).end;
+                       st.pop();
+                       st.push(a);
+                   }
+                   
+			}else {
+			st.push(intervals.get(i));
+			}
+		  }
+		  ArrayList<Interval> ans=new ArrayList<>();
+		  while(!st.isEmpty()) {
+
+			  ans.add(st.peek());
+			  st.pop();
+		  }
+		  Collections.sort(ans, new Mycomparator());
+          return ans;
+	 }
+	public static void main(String[] args) {
+//		[1,3],[2,6],[8,10],[15,18],
+		ArrayList<Interval> arr=new ArrayList<>();
+//		Interval a = new Interval(1,3);
+		arr.add(new Interval(1,3));
+		arr.add(new Interval(2,6));
+		arr.add(new Interval(8,10));
+		arr.add(new Interval(15,18));
+		ArrayList<Interval> arr2=merge(arr);
+		for(int i=0;i<arr2.size();i++) {
+			System.out.print(arr2.get(i).start+" "+arr2.get(i).end+"    ");
+		}
+		
+
+	}
+	
+}
