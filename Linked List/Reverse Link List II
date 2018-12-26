@@ -1,0 +1,71 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    ListNode Reverse(ListNode A){
+        if(A==null)
+        return null;
+        ListNode prev=null;
+        ListNode curr=A;
+        ListNode ne=A.next;
+        while(curr!=null){
+            curr.next=prev;
+            prev=curr;
+            curr=ne;
+            if(ne==null)
+            break;
+            ne=ne.next;
+        }
+        A=prev;
+        return A;
+    }
+    public ListNode reverseBetween(ListNode A, int B, int C) {
+        if(A==null || A.next==null)
+        return A;
+       ListNode startb=null;
+       ListNode endb=null;
+       int iterate1=1;
+       ListNode temp1=A;
+       while(temp1!=null && iterate1<C){
+           temp1=temp1.next;
+           iterate1++;
+       }
+      
+       endb=temp1.next;
+      temp1.next=null;
+       ListNode liststart=null;
+       if(B==1)
+       {
+           startb=null;
+           liststart=A;
+       }else{
+           int iterate2=1;
+        ListNode temp2=A;
+       while(temp2!=null && iterate2<B-1){
+           temp2=temp2.next;
+           iterate2++;
+       } 
+       startb=temp2;
+       liststart=startb.next;
+       startb.next=null;
+       }
+       ListNode re=Reverse(liststart);
+       if(startb!=null){
+           startb.next=re;
+           
+       }else{
+           A=re;
+       }
+       ListNode temp5=re;
+       while(temp5!=null && temp5.next!=null){
+           temp5=temp5.next;
+       }
+       temp5.next=endb;
+       return A;
+    }
+}
