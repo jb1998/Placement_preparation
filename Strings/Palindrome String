@@ -1,0 +1,32 @@
+public class Solution {
+    public int isPalindrome(String A) {
+        int i=0;
+        int j=A.length()-1;
+        boolean went=false;
+        while(i<=j){
+           
+            while(i<=j && (!Character.isLetter((A.charAt(i))) || !Character.isDigit((A.charAt(i)))))
+            i++;
+            
+            while(i<=j && (!Character.isLetter((A.charAt(j))) || !Character.isDigit((A.charAt(j)))))
+            j--;
+            
+            if(i<A.length() && j>=0 && ((A.charAt(i)>='a' && A.charAt(i)<='z') ||(A.charAt(i)>='0' && A.charAt(i)<='9')|| (A.charAt(i)>='A' && A.charAt(i)<='Z')) || ((A.charAt(j)>='a' && A.charAt(j)<='z') ||(A.charAt(j)>='0' && A.charAt(j)<='9')|| (A.charAt(j)>='A' && A.charAt(j)<='Z'))){
+            System.out.println(A.charAt(i)+" "+A.charAt(j));
+                if( i<A.length() && j>=0 && Character.toLowerCase(A.charAt(i))!= Character.toLowerCase(A.charAt(j)))
+                    return 0;
+           i++;
+            j--;
+            went=true;
+            }
+           
+           
+           
+            
+            
+        }
+        // if(!went)
+        // return 0;
+        return 1;
+    }
+}
