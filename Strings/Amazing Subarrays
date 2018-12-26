@@ -1,0 +1,19 @@
+public class Solution {
+    
+    public int solve(String A) {
+    int ans=0;
+        char check[]={'a','e','i','o','u','A','E','I','O','U'};
+        // HashSet<Character> has= new HashSet<>();
+    
+        for(int i=0;i<A.length();i++){
+            for(int j=0;j<check.length;j++){
+                if( check[j]==A.charAt(i)){
+              ans+=A.length()-1-i;
+            //   has.add(A.charAt(i));
+                    break;
+                }
+            }
+        }
+        return ans%10003;
+    }
+}
