@@ -1,0 +1,25 @@
+import java.util.Stack;
+
+public class Solution {
+
+	public static void reverseStack(Stack<Integer> s1, Stack<Integer> s2) {
+		if(s1.isEmpty()){
+            return;
+        }
+        int a=s1.peek();
+        s1.pop();
+        reverseStack(s1,s2);
+        
+        while(!s1.isEmpty()){
+            s2.push(s1.peek());
+            s1.pop();
+        }
+        s1.push(a);
+        
+        while(!s2.isEmpty()){
+            s1.push(s2.peek());
+            s2.pop();
+        }
+        
+	}
+}
