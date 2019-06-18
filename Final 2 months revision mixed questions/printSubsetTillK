@@ -1,0 +1,26 @@
+public class solution {
+	public static void printSubsetsSumTok(int input[], int k) {
+	
+        helper(input,k,0,new int[0]);
+		
+	}
+    public static void helper(int input[],int k,int start,int ans[]){
+        if(start==input.length){
+            if(k==0){
+                for(int i=0;i<ans.length;i++){
+                    System.out.print(ans[i]+" ");
+                }
+                System.out.println();
+            }
+            return;
+        }
+        helper(input,k,start+1,ans);
+        int myans[]=new int[ans.length+1];
+        for(int i=0;i<ans.length;i++){
+            myans[i]=ans[i];
+        }
+        myans[myans.length-1]=input[start];
+       
+        helper(input,k-input[start],start+1,myans);
+    }
+}
