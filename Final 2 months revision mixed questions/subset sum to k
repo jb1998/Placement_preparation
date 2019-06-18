@@ -17,7 +17,7 @@ public class solution {
         if(k<0){
             return new int[0][0];
         }
-        
+        // 12 it is
         int smallans[][]=helper(input,k-input[start],start+1);
         int smallans2[][]=helper(input,k,start+1);
         // for(int i=0;i<smallans.length;i++){
