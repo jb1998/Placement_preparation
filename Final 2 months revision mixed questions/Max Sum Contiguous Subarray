@@ -1,0 +1,13 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int maxSubArray(final List<Integer> A) {
+        int sumtillnow=0;
+        int maxsum=Integer.MIN_VALUE;
+        for(int i=0;i<A.size();i++){
+            sumtillnow+=A.get(i);
+            sumtillnow=Math.max(sumtillnow,A.get(i));
+            maxsum=Math.max(maxsum,sumtillnow);
+        }
+        return maxsum;
+    }
+}
