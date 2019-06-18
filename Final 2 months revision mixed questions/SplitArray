@@ -1,0 +1,30 @@
+
+public class solution {
+    public static boolean helper(int input[],int start,int pro){
+        if(start==input.length){
+            if(pro==0){
+                return true;
+            }
+            return false;
+        }
+        if(input[start]%5==0){
+            pro+=input[start];
+            return helper(input,start+1,pro);
+        }else
+        if(input[start]%3==0){
+            pro-=input[start];
+            return helper(input,start+1,pro);
+        }else{
+            boolean b1=helper(input,start+1,pro+input[start]);
+            boolean b2=helper(input,start+1,pro-input[start]);
+            return (b1||b2);
+        }
+        
+        
+    }
+	public static boolean splitArray(int input[]) {
+		return helper(input,0,0);
+	}
+	
+
+}
