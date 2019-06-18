@@ -1,0 +1,49 @@
+public class solution {
+
+	public static void mergeSort(int[] input){
+		// Write your code here
+        if(input.length<=1)
+            return;
+        int mid=input.length/2;
+        int first[]=new int[mid];
+        int last[]=new int[input.length-mid];
+        int k=0;
+        for(int i=0;i<mid;i++){
+            first[i]=input[k];
+            k++;
+        }
+		for(int i=0;i<last.length;i++){
+            last[i]=input[k];
+            k++;
+        }
+        mergeSort(first);
+        mergeSort(last);
+        merge(first,last,input);
+	}
+    public static void merge(int first[],int second[],int arr[]){
+        
+        int one=0;
+        int two=0;
+        int k=0;
+        while(one<first.length && two<second.length){
+            if(first[one]<=second[two]){
+                arr[k]=first[one];
+                one++;
+                k++;
+            }else if(first[one]>second[two]){
+                arr[k]=second[two];
+                k++;
+                two++;
+            }
+        }
+        for(int i=one;i<first.length;i++){
+            arr[k]=first[i];
+            k++;
+        }
+        for(int i=two;i<second.length;i++){
+            arr[k]=second[i];
+            k++;
+        }
+        
+    }
+}
