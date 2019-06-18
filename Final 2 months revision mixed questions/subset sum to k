@@ -1,0 +1,44 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets which sum to k
+	public static int[][] subsetsSumK(int input[], int k) {
+       return helper(input,k,0);
+        
+	}
+    public static int[][] helper(int input[],int k,int start){
+        if(start==input.length){
+            if(k==0){
+                int ans[][]=new int[1][0];
+                return ans;
+            }else{
+                return new int[0][0];
+            }
+        }
+        if(k<0){
+            return new int[0][0];
+        }
+        
+        int smallans[][]=helper(input,k-input[start],start+1);
+        int smallans2[][]=helper(input,k,start+1);
+        // for(int i=0;i<smallans.length;i++){
+        //     for(int j=0;j<smallans[i].length;j++){
+        //         System.out.print(smallans[i][j]+" f ");
+        //     }
+        // }
+        int myans[][]=new int[smallans.length+smallans2.length][];
+        int k1=0;
+        for(int i=0;i<smallans2.length;i++){
+            myans[k1]=smallans2[i];
+            k1++;
+        }
+        for(int i=0;i<smallans.length;i++){
+            myans[k1]=new int[smallans[i].length+1];
+            myans[k1][0]=input[start];
+            for(int j=0;j<smallans[i].length;j++)
+                myans[k1][j+1]=smallans[i][j];
+            k1++;
+        }
+        
+    return myans;
+    }
+}
