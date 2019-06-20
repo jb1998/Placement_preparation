@@ -1,0 +1,79 @@
+import java.util.*;
+
+public class solution {
+
+	public static ArrayList<Integer> longestSubsequence(int[] arr){
+        
+		HashMap<Integer,Boolean> has=new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            has.put(arr[i],true);
+        }
+        int maxlength=0;
+        int start=0;
+        for(int i=0;i<arr.length;i++){
+            boolean ans=has.get(arr[i]);
+            if(ans){
+                int count=1;
+                int start2=arr[i];
+                while(true){
+                    start2++;
+                    count++;
+                    if(has.containsKey(start2)){
+                        continue;
+                    }else{
+                        break;
+                    }
+                }
+                count--;
+                start2=arr[i];
+                while(true){
+                    start2--;
+                    count++;
+                    if(has.containsKey(start2)){
+                        continue;
+                    }else{
+                        break;
+                    }
+                }
+                count--;
+                start2++;
+                if(count>maxlength){
+                    start=start2;
+                    maxlength=count;
+                }
+        }
+	}
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(int i=0;i<maxlength;i++){
+            ans.add(start);
+            start++;
+        }
+        return ans;
+}
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
