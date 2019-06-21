@@ -1,0 +1,53 @@
+import java.util.*;
+class BFS2{
+    int node;
+    LinkedList<BFS2> ll;
+}
+public class Solution {
+
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int V = s.nextInt();
+		int E = s.nextInt();
+        int visited[]=new int[V];
+		Queue<BFS2> q = new LinkedList<>(); 
+        ArrayList<BFS2> arr=new ArrayList<>();
+        for(int i=0;i<V;i++){
+            BFS2 b = new BFS2();
+            b.node=i;
+            b.ll=new LinkedList<>();
+            arr.add(b);
+        }
+        
+        for(int i=0;i<E;i++){
+            int a1=s.nextInt();
+            int a2=s.nextInt();
+            arr.get(a1).ll.add(arr.get(a2));
+            arr.get(a2).ll.add(arr.get(a1));
+        }
+        for(int i=0;i<V;i++){
+        
+            if(arr.get(0).node==0){
+                q.add(arr.get(0));
+                visited[0]=1;
+                break;
+            }   
+        }
+        while(!q.isEmpty()){
+            BFS2 top=q.peek();
+            System.out.print(q.peek().node+" ");
+           
+            q.remove();
+            for(int i=0;i<top.ll.size();i++){
+                if(visited[top.ll.get(i).node]!=1) {
+
+                    q.add(top.ll.get(i));
+                	visited[top.ll.get(i).node]=1;
+                }
+            }
+            
+        }
+	}
+
+}
