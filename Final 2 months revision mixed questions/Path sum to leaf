@@ -1,0 +1,15 @@
+    public static void helper(BinaryTreeNode<Integer> root, int k, String ans){
+        if(root!=null && k==root.data){
+           ans= ans+root.data;
+            System.out.println(ans);
+            return ;
+        }
+        if(root==null || k<0)
+            return;
+        helper(root.left,k-root.data,ans+root.data+" ");
+        helper(root.right,k-root.data,ans+root.data+" ");
+    }
+	public static void rootToLeafPathsSumToK(BinaryTreeNode<Integer> root, int k) {
+		// Write your code here
+		helper(root,k,"");
+	}
