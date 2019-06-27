@@ -1,0 +1,31 @@
+ public static Help helper(BinaryTreeNode<Integer> root){
+        if(root==null)
+        {
+            Help h = new Help();
+            h.max=Integer.MIN_VALUE;
+            h.min=Integer.MAX_VALUE;
+            h.largestbst=0;
+            h.isbst=true;
+            return h;
+        }
+        Help myans=new Help();
+        Help left=helper(root.left);
+        Help right=helper(root.right);
+        myans.min=Math.min(Math.min(left.min,right.min),root.data);
+        myans.max=Math.max(Math.max(right.max,left.max),root.data);
+        if(root.data>=left.max && root.data<=right.min && left.isbst && right.isbst){
+            myans.isbst=true;
+        myans.largestbst=Math.max(left.largestbst,right.largestbst)+1;    
+        }else{
+            myans.isbst=false;
+        myans.largestbst=Math.max(left.largestbst,right.largestbst);    
+            
+        }
+        return myans;
+        
+    }
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) {
+		return helper(root).largestbst;
+		
+	}
+}
